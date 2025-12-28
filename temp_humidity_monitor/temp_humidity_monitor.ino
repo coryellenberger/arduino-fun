@@ -23,26 +23,26 @@ void setup() {
 }
 
 void loop() {
-  unsigned long currentMillis = millis();
+	unsigned long currentMillis = millis();
 
-  // --- Read sensor every 2 seconds ---
-  if (currentMillis - previousSensorMillis >= sensorInterval) {
-    previousSensorMillis = currentMillis;
+	// --- Read sensor every 2 seconds ---
+	if (currentMillis - previousSensorMillis >= sensorInterval) {
+		previousSensorMillis = currentMillis;
 
-    float t = dht.readTemperature();
-    float h = dht.readHumidity();
+		float t = dht.readTemperature();
+		float h = dht.readHumidity();
 
-    if (isnan(t) || isnan(h)) {
-      temperature = -1;
-      humidity = -1;
-    } else {
-      temperature = (t * 9.0 / 5.0) + 32.0; // in Fahrenheit
-      humidity = h;
-    }
-  }
+		if (isnan(t) || isnan(h)) {
+			temperature = -1;
+			humidity = -1;
+		} else {
+			temperature = (t * 9.0 / 5.0) + 32.0; // in Fahrenheit
+			humidity = h;
+		}
+	}
 
 	if (currentMillis - previousDisplayMillis >= displayInterval) {
-    previousDisplayMillis = currentMillis;
+		previousDisplayMillis = currentMillis;	
 
 		char text[10] = " ";
 		char tempText[20];
@@ -51,7 +51,7 @@ void loop() {
 
 		strcat(text, tempText);
 		strcat(text, "F ");
-	
+
 
 		char humidText[20];
 		// 2 chars, no decimal
